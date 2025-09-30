@@ -38,7 +38,7 @@
                @else
                   @isset($link['submenu'])
 
-                     <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                     <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                         <span class="w-6 h-6 inline-flex justify-center items-center text-gray-500">
                            <i class="{{ $link['icon'] }}"></i>
                         </span>
@@ -50,7 +50,12 @@
                      <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         @foreach ($link['submenu'] as $sublink)
                            <li>
-                              <a href="{{ $sublink['href'] }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $sublink['name'] }}</a>
+                              <a href="{{ $sublink['href'] }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-5 group hover:bg-gray-100">
+                                 <span class="w-6 h-6 inline-flex justify-center items-center text-gray-500">
+                                    <i class="fa-regular fa-circle"></i>
+                                 </span>
+                                 <span class="ms-3">{{ $sublink['name'] }}</span>
+                              </a>
                            </li>
                         @endforeach
                      </ul>
