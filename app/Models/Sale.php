@@ -17,4 +17,14 @@ class Sale extends Model
         'total',
         'observations',
     ];
+
+    /**
+     * Polymorphic many-to-many relationship with Product
+     */
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'productable')
+            ->withPivot('quantity', 'price', 'subtotal')
+            ->withTimestamps();
+    }
 }

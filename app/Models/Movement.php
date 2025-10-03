@@ -16,4 +16,14 @@ class Movement extends Model
         'observations',
         'reason_id',
     ];
+
+    /**
+     * Polymorphic many-to-many relationship with Product
+     */
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'productable')
+            ->withPivot('quantity', 'price', 'subtotal')
+            ->withTimestamps();
+    }
 }

@@ -15,4 +15,22 @@ class PurchaseOrder extends Model
         'total',
         'observations',
     ];
+
+    /**
+     * Inverse one-to-many relationship with Supplier
+     */
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+
+    /**
+     * Polymorphic many-to-many relationship with Product
+     */
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'productable')
+            ->withPivot('quantity', 'price', 'subtotal')
+            ->withTimestamps();
+    }
 }

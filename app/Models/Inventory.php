@@ -22,4 +22,28 @@ class Inventory extends Model
         'inventoryable_id',
         'inventoryable_type',
     ];
+
+    /**
+     * Inverse one-to-many relationship with Product
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Inverse one-to-many relationship with Warehouse
+     */
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
+
+    /**
+     * Polymorphic relationship with parent model
+     */
+    public function inventoryable()
+    {
+        return $this->morphTo();
+    }
 }

@@ -12,4 +12,12 @@ class Image extends Model
         'imageable_id',
         'imageable_type',
     ];
+
+    /**
+     * Polymorphic relationship with parent model
+     */
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

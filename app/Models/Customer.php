@@ -14,4 +14,28 @@ class Customer extends Model
         'email',
         'phone',
     ];
+
+    /**
+     * Inverse one-to-many relationship with Identity
+     */
+    public function identity()
+    {
+        return $this->belongsTo(Identity::class);
+    }
+
+    /**
+     * One-to-many relationship with Quote
+     */
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
+
+    /**
+     * One-to-many relationship with Sale
+     */
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
