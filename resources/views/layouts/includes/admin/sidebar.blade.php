@@ -7,21 +7,27 @@
          'active' => request()->routeIs('admin.dashboard'),
       ],
       [
-         'header' => 'Administrar Paginas',
+         'name' => 'Categorías',
+         'icon' => 'fa-solid fa-list',
+         'href' => route('admin.categories.index'),
+         'active' => request()->routeIs('admin.categories.*'),
       ],
-      [
-         'name' => 'Dashboard',
-         'icon' => 'fa-solid fa-gauge',
-         'href' => route('admin.dashboard'),
-         'active' => false,
-         'submenu' => [
-            [
-               'name' => 'Test',
-               'href' => '#',
-               'active' => false,
-            ],
-         ]
-      ],
+      // [
+      //    'header' => 'Administrar Paginas',
+      // ],
+      // [
+      //    'name' => 'Dashboard',
+      //    'icon' => 'fa-solid fa-gauge',
+      //    'href' => route('admin.dashboard'),
+      //    'active' => false,
+      //    'submenu' => [
+      //       [
+      //          'name' => 'Test',
+      //          'href' => '#',
+      //          'active' => false,
+      //       ],
+      //    ]
+      // ],
    ]
 @endphp
 
