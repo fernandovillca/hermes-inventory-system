@@ -19,6 +19,9 @@
         {{-- Font Awesome --}}
         <script src="https://kit.fontawesome.com/d667d9b31f.js" crossorigin="anonymous"></script>
 
+        {{-- SweetAlert2 --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         {{-- WireUI --}}
         <wireui:scripts />
 
@@ -27,6 +30,8 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        @stack('css')
     </head>
     <body class="font-sans antialiased bg-gray-50">
         
@@ -52,5 +57,37 @@
         @livewireScripts
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+        <script>
+           
+            
+        </script>
+
+        @if (session('swal-toast'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+
+                Toast.fire(@json(session('swal-toast')));
+            </script>
+        @endif
+       
+        @if (session('swal'))
+            <script>
+                Swal.fire(@json(session('swal')));
+            </script>
+        @endif
+
+        @stack('js')
+        
     </body>
 </html>
