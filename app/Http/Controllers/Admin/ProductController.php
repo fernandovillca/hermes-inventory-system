@@ -10,16 +10,16 @@ use App\Models\Category;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('admin.products.views.index');
     }
 
-    public function create()
+    public function create(): View
     {
         $categories = Category::all();
         return view('admin.products.views.create', compact(
@@ -46,7 +46,7 @@ class ProductController extends Controller
         }
     }
 
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
         $categories = Category::all();
         return view('admin.products.views.edit', compact(
