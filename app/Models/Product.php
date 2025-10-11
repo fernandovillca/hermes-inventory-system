@@ -36,6 +36,22 @@ class Product extends Model
     }
 
     /**
+     * Polymorphic many-to-many relationship with SaleOrder
+     */
+    public function purchaseOrders()
+    {
+        return $this->morphedByMany(PurchaseOrder::class, 'productable');
+    }
+
+    /**
+     * Polymorphic many-to-many relationship with Quote
+     */
+    public function quotes()
+    {
+        return $this->morphedByMany(Quote::class, 'productable');
+    }
+
+    /**
      * Polymorphic one-to-many relationship with Image
      */
     public function images()
