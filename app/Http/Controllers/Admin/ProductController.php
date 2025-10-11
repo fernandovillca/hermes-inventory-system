@@ -74,8 +74,37 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        try {
+            if ($product->inventories()->exists()) {
+                SessionSweetAlert::flashSwal('error', 'No se puede eliminar el producto, porque tiene inventarios asociados.', null);
+                return redirect()->route('admin.products.index');
+            }
+
+            if ($product->purchaseOrders()->exists()) {
+                SessionSweetAlert::flashSwal('error', 'No se puede eliminar el producto, porque tiene órdenes de compra asociadas.', null);
+                return redirect()->route('admin.products.index');
+            }
+
+            if ($product->quotes()->exists()) {
+                SessionSweetAlert::flashSwal('error', 'No se puede eliminar el producto, porque tiene cotizaciones asociadas.', null);
+                return redirect()->route('admin.products.index');
+            }
+
+            $deleted = $product->delete();
+
+            if (!$deleted) {
+                SessionSweetAlert::flashSwal('error', 'No se pudo eliminar el producto', 'inténtalo de nuevo.');
+                return back();
+            }
+
+            SessionSweetAlert::flashSwalToast('success', 'Producto eliminado exitosamente');
+
+            return redirect()->route('admin.products.index');
+        } catch (Exception $e) {
+            SessionSweetAlert::flashSwal('error', 'Ocurrió un error al eliminar el producto', $e->getMessage());
+            return back();
+        }
     }
 }
