@@ -39,7 +39,7 @@ class ProductController extends Controller
 
             SessionSweetAlert::flashSwalToast('success', 'Producto creado exitosamente');
 
-            return redirect()->route('admin.products.index');
+            return redirect()->route('admin.products.edit');
         } catch (Exception $e) {
             SessionSweetAlert::flashSwal('error', 'Ocurrió un error al crear el producto', $e->getMessage());
             return back()->withInput();
